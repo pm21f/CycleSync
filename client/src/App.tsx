@@ -9,26 +9,17 @@ import CalendarPage from "@/pages/calendar";
 import InsightsPage from "@/pages/insights";
 import ResourcesPage from "@/pages/resources";
 import CommunityPage from "@/pages/community";
-import LoginPage from "@/pages/login";
-import RegisterPage from "@/pages/register";
 import NotFound from "@/pages/not-found";
-import { useAuth } from "@/hooks/use-auth";
 
 function Router() {
-  const { user, isAuthenticated } = useAuth();
-
   return (
     <Switch>
-      {/* Public Routes */}
-      <Route path="/login" component={LoginPage} />
-      <Route path="/register" component={RegisterPage} />
-      
-      {/* Protected Routes */}
-      <Route path="/" component={isAuthenticated ? Dashboard : LoginPage} />
-      <Route path="/calendar" component={isAuthenticated ? CalendarPage : LoginPage} />
-      <Route path="/insights" component={isAuthenticated ? InsightsPage : LoginPage} />
-      <Route path="/resources" component={isAuthenticated ? ResourcesPage : LoginPage} />
-      <Route path="/community" component={isAuthenticated ? CommunityPage : LoginPage} />
+      {/* All routes are public now */}
+      <Route path="/" component={Dashboard} />
+      <Route path="/calendar" component={CalendarPage} />
+      <Route path="/insights" component={InsightsPage} />
+      <Route path="/resources" component={ResourcesPage} />
+      <Route path="/community" component={CommunityPage} />
       
       {/* Fallback to 404 */}
       <Route component={NotFound} />
