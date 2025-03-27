@@ -10,6 +10,7 @@ import InsightsPage from "@/pages/insights";
 import ResourcesPage from "@/pages/resources";
 import CommunityPage from "@/pages/community";
 import NotFound from "@/pages/not-found";
+import { useEffect } from "react";
 
 function Router() {
   return (
@@ -28,6 +29,18 @@ function Router() {
 }
 
 function App() {
+  // Initialize theme from system preference or saved preference
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme) {
+      document.documentElement.dataset.mode = savedTheme;
+    } else if (systemPrefersDark) {
+      document.documentElement.dataset.mode = 'dark';
+    }
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex flex-col min-h-screen">

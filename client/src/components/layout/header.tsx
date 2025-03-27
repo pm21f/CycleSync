@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/hooks/use-auth";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const Header: React.FC = () => {
   const [location] = useLocation();
@@ -24,7 +25,7 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="bg-background shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
@@ -43,7 +44,7 @@ const Header: React.FC = () => {
                   className={`${
                     location === item.href
                       ? "text-primary border-b-2 border-primary"
-                      : "text-neutral-600 hover:text-primary"
+                      : "text-foreground hover:text-primary"
                   } px-3 py-2 text-sm font-medium`}
                 >
                   {item.name}
@@ -53,6 +54,7 @@ const Header: React.FC = () => {
           </nav>
           
           <div className="flex items-center space-x-4">
+            <ThemeToggle />
             <button className="text-neutral-500 hover:text-primary">
               <i className="ri-notification-3-line text-xl"></i>
             </button>
@@ -81,14 +83,14 @@ const Header: React.FC = () => {
       
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-neutral-200 px-2 pt-2 pb-3 space-y-1">
+        <div className="md:hidden bg-background border-t border-border px-2 pt-2 pb-3 space-y-1">
           {navigation.map((item) => (
             <Link key={item.name} href={item.href}>
               <a 
                 className={`block px-3 py-2 rounded-md text-base font-medium ${
                   location === item.href
-                    ? "text-primary bg-neutral-50"
-                    : "text-neutral-600 hover:text-primary hover:bg-neutral-50"
+                    ? "text-primary bg-muted"
+                    : "text-foreground hover:text-primary hover:bg-muted"
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
